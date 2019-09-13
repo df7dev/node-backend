@@ -28,4 +28,4 @@ db.once("open", () => {
   console.log("mongoDB run");
 });
 
-server.listen(3333);
+server.listen();

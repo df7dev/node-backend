@@ -2,26 +2,30 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-
 const app = express();
-
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const socketIo = require('socket.io')(server);
 
-mongoose.connect('mongodb url', {
-    useNewUrlParser: true,
-});
+app.use(cors());
 
 app.use((req, res, next) => {
-    req.io = io;
+    req.io = socketIo;
 
     next();
 });
-
-app.use(cors());
 
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')));
 
 app.use(require('./routes'));
 
-app.listen(3333);   
+mongoose.connect('mongodb+srv://semana:semana@cluster0-jiaxz.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+});
+
+let db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error with database: "));
+db.once("open", () => {
+  console.log("mongoDB run");
+});
+
+server.listen(3333);

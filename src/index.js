@@ -18,7 +18,7 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resiz
 
 app.use(require('./routes'));
 
-mongoose.connect('mongodb+srv://semana:semana@cluster0-jiaxz.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('https://mongodb+srv://semana:semana@cluster0-jiaxz.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
 });
 

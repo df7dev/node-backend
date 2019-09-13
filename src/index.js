@@ -28,4 +28,4 @@ db.once("open", () => {
   console.log("mongoDB run");
 });
 
-server.listen(process.env.PORT, 3333);
+server.listen(process.env.PORT || 3333);

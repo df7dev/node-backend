@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+uploads/resized/
+
+src/.DS_Store
